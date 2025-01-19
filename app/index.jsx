@@ -4,11 +4,11 @@ import { Ionicons } from "@expo/vector-icons";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Colors } from "@/contansts/Colors";
+import { useState } from "react";
 
 export default function Index() {
   const { startOAuthFlow } = useOAuth({ strategy: "oauth_apple" });
   const { startOAuthFlow: googleOAuth } = useOAuth({ strategy: "oauth_google" });
-  const { startOAuthFlow: emailOAuth } = useOAuth({ strategy: "email" });
 
   const { top } = useSafeAreaInsets();
   
@@ -77,11 +77,11 @@ export default function Index() {
           <Text style={styles.buttonText}>Continue with Google</Text>
         </TouchableOpacity>
         {/* <TouchableOpacity onPress={handleEmailLogin} style={[styles.button, { backgroundColor: "#fff", borderColor: "#000" }]}>
-          <Ionicons name="mail-outline" size={24} color="#000" />
-          <Text style={[styles.buttonText, { color: "#000" }]}>Sign in with Email</Text>
+          <Ionicons name="mail" size={24} color="#000" />
+          <Text style={[styles.buttonText, { color: "#000" }]}>Continue with Email</Text>
         </TouchableOpacity> */}
-        <Text style={{ textAlign: "center", fontSize: 14, color: "#000" }}>
-          By signing in, you agree to our <Text style={{ color: Colors.primary }} onPress={() => openLink("https://todoist.com/terms")}>Terms of Service</Text> and <Text style={{ color: Colors.primary }} onPress={() => openLink("https://todoist.com/privacy")}>Privacy Policy</Text>
+        <Text style={{ textAlign: "center", fontSize: 14, color: Colors.lightText }}>
+          By continuing, you agree to our <Text style={{ textDecorationLine: "underline" }} onPress={() => openLink("https://todoist.com/terms")}>Terms of Service</Text> and <Text style={{ textDecorationLine: "underline" }} onPress={() => openLink("https://todoist.com/privacy")}>Privacy Policy</Text>
         </Text>
       </View>
     </View>
