@@ -50,7 +50,7 @@ const HeaderRight = () => {
                 activeOpacity={0.8}
             >
                 <Image
-                    source={{uri: user.imageUrl}}
+                    source={{uri: user?.imageUrl}}
                     style={{width: 28, height: 28, borderRadius: 20, borderWidth: 1, borderColor: Colors.lightBorder}}
                 />
             </TouchableOpacity>

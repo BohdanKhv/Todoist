@@ -38,19 +38,6 @@ export default function Index() {
     }
   }
 
-  const handleEmailLogin = async () => {
-    try {
-      const { createSessionId, setActive } = await emailOAuth();
-      console.log(`Email login: ${createSessionId}`);
-
-      if (createSessionId) {
-        setActive({ session: createSessionId });
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }
-
   const openLink = async (url) => {
     await WebBrowser.openBrowserAsync(url);
   }

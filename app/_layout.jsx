@@ -16,6 +16,18 @@ const InitialLayout = () => {
   const segments = useSegments();
   const pathName = usePathname();
 
+  if (!isLoaded) {
+    return <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+      }}
+    >
+      <ActivityIndicator size="large" color={Colors.primary} />
+    </View>;
+  }
+
   useEffect(() => {
     if (!isLoaded) {
       return;
@@ -29,18 +41,6 @@ const InitialLayout = () => {
       router.replace("/");
     }
   }, [isLoaded, isSignedIn]);
-
-  if (!isLoaded) {
-    return <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-      }}
-    >
-      <ActivityIndicator size="large" color={Colors.primary} />
-    </View>;
-  }
 
   return (
     <Stack
