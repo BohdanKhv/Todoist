@@ -5,6 +5,7 @@ export default function Layout() {
         <Stack
             screenOptions={{ contentStyle: {backgroundColor: "#fff"} }}
         >
+            <Stack.Screen name="task/new" options={{ presentation: 'modal', headerTitle: "New task" }} />
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         </Stack>
     );

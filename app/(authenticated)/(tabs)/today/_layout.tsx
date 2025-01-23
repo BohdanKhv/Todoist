@@ -19,6 +19,7 @@ const _layout = () => {
                 options={{
                     title: 'Today',
                     headerLargeTitle: true,
+                    headerRight: () => <MoreButton pageName="today"/>
                 }}
             />
         </Stack>

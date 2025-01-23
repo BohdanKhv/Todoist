@@ -40,7 +40,8 @@
         {
           "launchMode": "most-recent"
         }
-      ]
+      ],
+      "expo-build-properties"
     ],
     "experiments": {
       "typedRoutes": true

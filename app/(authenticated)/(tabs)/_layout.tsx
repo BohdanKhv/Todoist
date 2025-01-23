@@ -58,7 +58,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
                     <Text style={{ color: isFocused ? Colors.primary : Colors.lightText, fontSize: 12, fontWeight: '600', paddingTop: 4 }}>
                         {options.title}
                     </Text>
-                    </TouchableOpacity>
+                </TouchableOpacity>
                 );
             })}
         </View>
@@ -75,8 +75,8 @@ const _layout = () => {
                 name="today"
                 options={{
                     title: 'Today',
-                    icon: 'home-outline',
-                    activeIcon: 'home',
+                    icon: 'calendar-number-outline',
+                    activeIcon: 'calendar-number',
                 }}
             />
             <Tabs.Screen

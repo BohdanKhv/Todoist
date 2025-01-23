@@ -2,7 +2,7 @@ import * as SecureStore from 'expo-secure-store'
 
 const createTokenCache = () => {
     return {
-        getToken: async (key) => {
+        getToken: async (key: string) => {
             try {
                 const item = await SecureStore.getItemAsync(key)
                 if (item) {
@@ -17,7 +17,7 @@ const createTokenCache = () => {
                 return null
             }
         },
-        saveToken: (key, token) => {
+        saveToken: (key: string, token: string) => {
             return SecureStore.setItemAsync(key, token)
         },
     }

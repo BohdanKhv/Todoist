@@ -3,6 +3,7 @@ import { ClerkProvider, ClerkLoaded, useAuth } from "@clerk/clerk-expo";
 import { tokenCache } from "@/utils/cache";
 import { Colors } from "@/contansts/Colors";
 import { useEffect } from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ActivityIndicator, View } from "react-native";
 
 const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
@@ -16,31 +17,24 @@ const InitialLayout = () => {
   const segments = useSegments();
   const pathName = usePathname();
 
-  if (!isLoaded) {
-    return <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-      }}
-    >
-      <ActivityIndicator size="large" color={Colors.primary} />
-    </View>;
-  }
-
   useEffect(() => {
-    if (!isLoaded) {
-      return;
-    }
+    if (!isLoaded) return;
+    const inAuthGroup = segments[0] === '(authenticated)';
 
-    const isAuthGroup = segments[0] === "(authenticated)";
-
-    if (isSignedIn && !isAuthGroup) {
-      router.replace("/(authenticated)/(tabs)/today");
-    } else if (!isSignedIn && pathName !== "/") {
-      router.replace("/");
+    if (isSignedIn && !inAuthGroup) {
+      router.replace('/(authenticated)/(tabs)/today');
+    } else if (!isSignedIn && pathName !== '/') {
+      router.replace('/');
     }
-  }, [isLoaded, isSignedIn]);
+  }, [isSignedIn]);
+
+  if (!isLoaded) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color={Colors.primary} />
+      </View>
+    );
+  }
 
   return (
     <Stack
@@ -64,7 +58,9 @@ const RootLayout = () => {
       tokenCache={tokenCache}
     >
       <ClerkLoaded>
-        <InitialLayout/>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <InitialLayout/>
+        </GestureHandlerRootView>
       </ClerkLoaded>
     </ClerkProvider>
   )

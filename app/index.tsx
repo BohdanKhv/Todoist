@@ -9,16 +9,15 @@ import { useState } from "react";
 export default function Index() {
   const { startOAuthFlow } = useOAuth({ strategy: "oauth_apple" });
   const { startOAuthFlow: googleOAuth } = useOAuth({ strategy: "oauth_google" });
-
   const { top } = useSafeAreaInsets();
   
   const handleAppleLogin = async () => {
     try {
-      const { createSessionId, setActive } = await startOAuthFlow();
-      console.log(`Apple login: ${createSessionId}`);
+      const { createdSessionId, setActive } = await startOAuthFlow();
+      console.log(`Apple login: ${createdSessionId}`);
 
-      if (createSessionId) {
-        setActive({ session: createSessionId });
+      if (createdSessionId) {
+        setActive!({ session: createdSessionId });
       }
     } catch (e) {
       console.error(e);
@@ -27,18 +26,17 @@ export default function Index() {
 
   const handleGoogleLogin = async () => {
     try {
-      const { createSessionId, setActive } = await googleOAuth();
-      console.log(`Google login: ${createSessionId}`);
+      const { createdSessionId, setActive } = await googleOAuth();
 
-      if (createSessionId) {
-        setActive({ session: createSessionId });
+      if (createdSessionId) {
+        setActive!({ session: createdSessionId });
       }
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.error('OAuth error', err);
     }
-  }
+  };
 
-  const openLink = async (url) => {
+  const openLink = async (url: string) => {
     await WebBrowser.openBrowserAsync(url);
   }
 
@@ -101,8 +99,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     backgroundColor: "#fff",
-    borderWidth: 2,
-    borderColor: Colors.borderColor,
+    borderColor: Colors.lightBorder,
     paddingHorizontal: 10,
     paddingVertical: 10,
     borderWidth: StyleSheet.hairlineWidth,

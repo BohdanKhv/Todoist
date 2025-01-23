@@ -1,14 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
 
-const Fab = () => {
+const New = () => {
     return (
         <View>
-            <Text>Fab</Text>
+            <Text>new</Text>
         </View>
     )
 }
 
-export default Fab
+export default New
 
 const styles = StyleSheet.create({})
