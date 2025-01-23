@@ -4,7 +4,7 @@ import { tokenCache } from "@/utils/cache";
 import { Colors } from "@/contansts/Colors";
 import { useEffect } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { ActivityIndicator, View } from "react-native";
+import { ActivityIndicator, SafeAreaView, View } from "react-native";
 
 const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 if (!publishableKey) {
@@ -37,6 +37,7 @@ const InitialLayout = () => {
   }
 
   return (
+    <SafeAreaView style={{ flex: 1 }}>
     <Stack
       screenOptions={{
         headerShown: false,
@@ -48,21 +49,22 @@ const InitialLayout = () => {
       <Stack.Screen name="index" />
       <Stack.Screen name="(authenticated)" />
     </Stack>
+    </SafeAreaView>
   )
 }
 
 const RootLayout = () => {
   return (
-    <ClerkProvider
-      publishableKey={publishableKey}
-      tokenCache={tokenCache}
-    >
-      <ClerkLoaded>
-        <GestureHandlerRootView style={{ flex: 1 }}>
-          <InitialLayout/>
-        </GestureHandlerRootView>
-      </ClerkLoaded>
-    </ClerkProvider>
+      <ClerkProvider
+        publishableKey={publishableKey}
+        tokenCache={tokenCache}
+      >
+        <ClerkLoaded>
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <InitialLayout/>
+          </GestureHandlerRootView>
+        </ClerkLoaded>
+      </ClerkProvider>
   )
 }
 
